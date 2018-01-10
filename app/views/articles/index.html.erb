@@ -1,1 +1,29 @@
-<h2> NEW!! Index!!! Yeeeahh!</h2>
+<h2> All </h2>
+
+<% @articles.each do |article| %>
+
+<p1>
+	<br/><%= article.id %><br/>
+</p1>
+
+
+<h2>
+
+	<%= article.title %>
+
+</h2>
+	
+
+<p2>
+	<%= article.text %><br/>
+</p2>
+
+<p2> 
+
+<%= link_to "Show", article_path(article) %> |
+<%= link_to "Edit", edit_article_path(article) %>
+</p2>
+
+<hr/>
+
+<% end %>
