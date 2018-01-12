@@ -1,4 +1,32 @@
 <h2><%= @article.title %> </h2>
 
 <p2> <%= @article.text %> </p2><hr/>
-<%= link_to "Posts", articles_path %> 
+
+
+
+<%= link_to "Posts", articles_path %><hr/> 
+
+
+
+<% @article.comments.each do |comment|%>
+
+<%= "User #{comment.author}" %><br/>
+<%= "writed: #{comment.body}"%><hr/>
+
+<%end%>
+
+
+
+
+<%= form_for ([@article, @article.comments.build]) do |f| %> 
+
+	<p> New form! </p>
+	<h3> <%= f.label :author%></h3>
+	<h1> <%= f.text_field  :author %> </h1>
+
+	<h3> <%= f.label :Text %></h3>
+	<h1> <%= f.text_field  :body %> </h1>
+
+	<p3> <%= f.submit 'Make Article'  %></p3>
+
+<%end%>
