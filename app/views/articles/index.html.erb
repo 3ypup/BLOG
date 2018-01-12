@@ -1,5 +1,8 @@
 <h2> All </h2>
 
+
+<%= link_to "New", "/articles/new" %><hr/>
+
 <% @articles.each do |article| %>
 
 <p1>
@@ -23,7 +26,9 @@
 
 <%= link_to "Show", article_path(article) %> |
 <%= link_to "Edit", edit_article_path(article)  %> |
-<%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you shure?"} %>
+<%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you shure?"} %> | <br/>
+
+
 </p2>
 
 <hr/>
