@@ -22,7 +22,7 @@
 
 	<p> New form! </p>
 	<h3> <%= f.label :author%></h3>
-	<h1> <%= f.text_field  :author %> </h1>
+	<h1> <%= f.text_field  :author, value:  current_user.username %> </h1>
 
 	<h3> <%= f.label :Text %></h3>
 	<h1> <%= f.text_area :body, size: "60x10"  %> </h1>
