@@ -1,4 +1,6 @@
-<h2><%= @article.title %> </h2>
+
+  <h2><%= @article.title %></h2> 
+
 
 <p2> <%= @article.text %> </p2><hr/>
 
@@ -8,15 +10,46 @@
 
 
 
+<div class = "d-sm-none">
+
+	<p2>Small device</p2>
+
+</div>
+
+
+
+
+<div class = " d-md-none">
+
+	<p2>Medium devise</p2>
+
+</div>
+
+
+
 <% @article.comments.each do |comment|%>
 
-	<%= "User #{comment.author}" %><br/>
-	<%= "writed: #{comment.body}"%><hr/>
+	
+	
 
+
+
+<div class = "container">
+	<div class = "row">
+		<div class = "col-sm-4 col-xs-4 col-md-6">
+			<ul> 
+				<li><%= "User #{comment.author}" %><br/></li>
+			</ul>
+		</div>
+		<div class = "col-sm-8 col-xs-8 col-md-6">
+			<ul> 
+				<%= "writed: #{comment.body}"%><hr/>
+			</ul>
+		</div>
+		
+	</div>
+</div>
 <%end%>
-
-
-
 
 <%= form_for ([@article, @article.comments.build]) do |f| %> 
 
@@ -24,8 +57,8 @@
 	
 	<h1> <%= f.hidden_field  :author,  value:  current_user.username %> </h1>
 
-	<h3> <%= f.label :Text %></h3>
-	<h1> <%= f.text_area :body, size: "60x10"  %> </h1>
-	<p3> <%= f.submit 'Make Article'  %></p3>
+	<h3> <%= f.label :New_comment%></h3>
+	<h1> <%= f.text_area :body, size: "40x5"  %> </h1>
+	<p3> <%= f.submit 'Post comment'  %></p3>
 
 <%end%>
