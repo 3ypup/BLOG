@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'factory_girl', '~> 3.0' 
 end
 
 group :development do
