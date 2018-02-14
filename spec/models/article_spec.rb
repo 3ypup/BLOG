@@ -12,7 +12,7 @@ RSpec.describe Article, type: :model do
         it "return the article title" do
           article = create(:article, title: 'Lorem Ipsum' )
 
-          expect(article.subject).to eq 'Lorem Ipsum'
+          expect(article.title).to eq 'Lorem Ipsum'
         end
       end
 
