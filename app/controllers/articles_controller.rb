@@ -29,12 +29,26 @@ end
   end
   
   def new
-    
+     @larticle = Article.last
+    if @larticle == nil
+      @artnum = 1
+    else
+      @artnum = @article.title.to_i + 1
+
+    end 
   end
 
 
   def create
     @article = Article.new(article_params)
+    @larticle = Article.last
+
+    if @larticle == nil
+      @artnum = 1
+    else
+      @artnum = @article.title.to_i + 1
+
+    end 
       
       if  @article.save
         redirect_to @article

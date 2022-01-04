@@ -1,5 +1,5 @@
 
-  <h2><%= @article.title %></h2> 
+  <h2>Ночь №<%= @article.title %></h2> 
 
 
 <p2> <%= @article.text %> </p2><hr/>
@@ -10,20 +10,10 @@
 
 
 
-<div class = "d-sm-none">
-
-	<p2>Small device</p2>
-
-</div>
 
 
 
 
-<div class = " d-md-none">
-
-	<p2>Medium devise</p2>
-
-</div>
 
 
 
@@ -38,7 +28,7 @@
 	<div class = "row">
 		<div class = "col-sm-4 col-xs-4 col-md-6">
 			<ul> 
-				<li><%= "User #{comment.author}" %><br/></li>
+				<li><%= "Ведущий #{comment.author}" %> <br/></li>
 			</ul>
 		</div>
 		<div class = "col-sm-8 col-xs-8 col-md-6">
@@ -56,8 +46,9 @@
 	<p> New form! </p>
 	
 	<h1> <%= f.hidden_field  :author,  value:  current_user.username %> </h1>
+	<h1> <%= f.hidden_field  :group,  value:  current_user.group%> </h1>
 
-	<h3> <%= f.label :New_comment%></h3>
+	<h3> <%= f.label :Проголосуйте_за_каждого_персонажа%></h3>
 	<h1> <%= f.text_area :body, size: "40x5"  %> </h1>
 	<p3> <%= f.submit 'Post comment'  %></p3>
 

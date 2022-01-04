@@ -1,36 +1,49 @@
 <h2> All </h2>
 
 
-<%= link_to "New", "/articles/new" %><hr/>
-
-<% @articles.each do |article| %>
-
-<p1>
-	<br/><%= article.id %><br/>
-</p1>
 
 
-<h2>
-
-	<%= article.title %>
-
-</h2>
-	
-
-<p2>
-	<%= article.text %><br/>
-</p2>
-
-<p2> 
 
 
-<%= link_to "Show", article_path(article) %> |
-<%= link_to "Edit", edit_article_path(article)  %> |
-<%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you shure?"} %> | <br/>
 
 
-</p2>
 
-<hr/>
 
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ночь №</th>
+      <th scope="col">Посмотреть</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	<% @articles.each do |article| %>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= article.id %></td>
+      <td><%= article.title %></td>
+      <td><%= link_to "Show", article_path(article) %> </td>
+    </tr>
+
+      <tr>
+      
+      <td><%= article.id %></td>
+      <td><%= article.title %></td>
+      <td><a href="/articles/new" class="link-success">Success link</a><hr/> </td>
+    </tr>
+ <% end %>
+  </tbody>
+</table>
+<a href="/articles/new" class="link-success">Начать новое голосование</a>
+
+
+
+
+
+
+
+
+
+
