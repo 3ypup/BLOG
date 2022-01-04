@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     	:vote_2, :vote_3, :vote_4, 
     	:vote_5, :vote_6, :vote_7, 
     	:vote_8, :vote_9, :vote_10, 
-    	:group)
+    	:group, :det)
   end
 
 

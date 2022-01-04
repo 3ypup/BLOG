@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20220104144018) do
     t.integer "vote_9"
     t.integer "vote_10"
     t.integer "group"
+    t.integer "det"
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 

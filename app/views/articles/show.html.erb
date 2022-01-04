@@ -10,13 +10,14 @@
 
 
 
-
+<% @kom = ["Дэйзи","Мистер Рокфеллер","Мистер Кэмпбелл","Врач","Ветеран","Проводница","Актриса","Журналистка"] %>
+<% @kash = { "Дэйзи" => 0,"Мистер Рокфеллер" => 0, "Мистер Кэмпбелл" => 0, "Врач"=>0, "Ветеран" => 0, "Проводница"=>0, "Актриса"=>0, "Журналистка"=>0}%>
 <% if current_user.group == 10 %>
 
 <table class="table">
   <thead>
     <tr>
-     <th scope="col">едущий/команда №</th>
+     <th scope="col">Ведущий/команда №</th>
       <th scope="col">Дейзи</th>
       <th scope="col">Мистер Рокфеллер</th>
       <th scope="col">Мистер Кэмпбелл</th>
@@ -24,6 +25,9 @@
       <th scope="col">Ветеран</th>
       <th scope="col">Проводница</th>
       <th scope="col">Актриса</th>
+      <th scope="col">Журналистка</th>
+      <th scope="col">Комиссары проверяют</th>
+
       </tr>
   </thead>
   <tbody>
@@ -38,10 +42,22 @@
       <td><%=comment.vote_5%></td>
       <td><%=comment.vote_6%></td>
       <td><%=comment.vote_7%></td>
+      <td><%=comment.vote_8%></td>
+      <td><%=@kom[comment.det-1]%><%comment.det%> <%@kash[@kom[comment.det-1].to_s]+=1%></td>
+
+    
+
      
     </tr>
 
     <%end%>
+
+     Комиссары проверяют: <%=@kom = @kash.max_by{|k,v| v} %>
+     <% @all = @article.comments.size %>,
+     это 
+     <% @prc =  @kash.values.max.to_f/ @all.to_f * 100.0   %>
+     <%= @prc.floor(2)%> % всех проголосовавших комиссаров
+   
   </tbody>
 </table>
 
@@ -59,6 +75,7 @@
       <th scope="col">Ветеран</th>
       <th scope="col">Проводница</th>
       <th scope="col">Актриса</th>
+      <th scope="col">Журналистка</th>
       </tr>
   </thead>
   <tbody>
@@ -73,6 +90,7 @@
       <td><%=comment.vote_5%></td>
       <td><%=comment.vote_6%></td>
       <td><%=comment.vote_7%></td>
+      <td><%=comment.vote_8%></td>
       <%end%>
     </tr>
 
@@ -84,14 +102,7 @@
 
 
 
-<% @article.comments.each do |comment|%>
 
-	
-	
-
-
-
-<%end%>
 
 <%= current_user.username%> 
 <% @q = 0 %>
@@ -153,11 +164,18 @@
 Актриса
 <%= f.select :vote_7, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
-<!--
+
+
 <div class="alert  alert-success" role="alert">
+Журналистка
 <%= f.select :vote_8, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
+<div class="alert  alert-success" role="alert">
+	Комиссар считает, что нужно проверить: 
+<%= f.select :det, [["Дэйзи", 1],["Мистер Рокфеллер",2],["Мистер Кэмпбелл",3],["Врач",4],["Ветеран",5],["Проводница",6],["Актриса",7], ["Журналистка",8]] %>
+</div>
+<!--
 <div class="alert  alert-success" role="alert">
 <%= f.select :vote_9, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>

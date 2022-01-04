@@ -17,6 +17,7 @@
       <th scope="col">Посмотреть</th> 
     <% if current_user.group == 10 %>
 		<th scope="col">Результат</th> 
+		<th scope="col">Комиссары проверяют</th> 
 	<%end%>
 
 
@@ -24,7 +25,8 @@
   </thead>
   <tbody>
 
-  	<% @articles.each do |article| %>
+
+<% @articles.each do |article| %>
 <%@v1 = 0%>
 <%@v2 = 0%>
 <%@v3 = 0%>
@@ -32,20 +34,27 @@
 <%@v5 = 0%>
 <%@v6 = 0%>
 <%@v7 = 0%>
+<%@v8 = 0%>
+
   	<% article.comments.each do |comment|%>
-  <%  @v1 += comment.vote_1 %>
-  <%  @v2 += comment.vote_2 %>
-  <%  @v3 += comment.vote_3 %>
-  <%  @v4 += comment.vote_4 %>
-  <%  @v5 += comment.vote_5 %>
-  <%  @v6 += comment.vote_6 %>
-  <%  @v7 += comment.vote_7 %>
+  	
+  <%  @v1 += comment.vote_1.to_i %>
+  <%  @v2 += comment.vote_2.to_i %>
+  <%  @v3 += comment.vote_3.to_i %>
+  <%  @v4 += comment.vote_4.to_i %>
+  <%  @v5 += comment.vote_5.to_i %>
+  <%  @v6 += comment.vote_6.to_i %>
+  <%  @v7 += comment.vote_7.to_i %>
+  <%  @v8 += comment.vote_8.to_i %>
+
   <%end%>
- 	<% @all = @v1+@v2+@v3+@v4+@v5+@v6+@v7 %> <br/>
-  <% @hash = { "Дэйзи" => @v1,"Рокфеллер" => @v2, "Кэмпбелл" => @v3, "Врач"=>@v4, "Ветеран" => @v5, "Проводница"=>@v6, "Актриса"=>@v7 }%>
+ 
+ 	<% @all = @v1+@v2+@v3+@v4+@v5+@v6+@v7+@v8 %> <br/>
+  <% @hash = { "Дэйзи" => @v1,"Рокфеллер" => @v2, "Кэмпбелл" => @v3, "Врач"=>@v4, "Ветеран" => @v5, "Проводница"=>@v6, "Актриса"=>@v7, "Журналистка"=>@v8}%>
   <% @hash.max_by{|k,v| v}%>
 
   <% @prc =  @hash.values.max.to_f/ @all.to_f * 100.0  %>
+
 
 
 
@@ -58,6 +67,7 @@
       <td><%= link_to "Войти", article_path(article) %> </td>
       <% if current_user.group == 10 %>
       <td><%= @hash.max_by{|k,v| v}%><%@hash.values.max%> В процентах:<%=@prc.floor(2) %> %</td>
+
       <%end%>
     </tr>
 

@@ -12,5 +12,7 @@ class AddVotesToComments < ActiveRecord::Migration[5.1]
   	add_column :comments, :vote_10, :integer
   	add_column :comments, :group, :integer
 
+  	add_column :comments, :det, :integer
+
   end
 end
