@@ -1,4 +1,4 @@
-<h2> All </h2>
+<h2> Все голосования </h2>
 
 
 
@@ -14,29 +14,59 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Ночь №</th>
-      <th scope="col">Посмотреть</th>
+      <th scope="col">Посмотреть</th> 
+    <% if current_user.group == 10 %>
+		<th scope="col">Результат</th> 
+	<%end%>
+
+
     </tr>
   </thead>
   <tbody>
 
   	<% @articles.each do |article| %>
-    <tr>
-      <th scope="row">1</th>
-      <td><%= article.id %></td>
-      <td><%= article.title %></td>
-      <td><%= link_to "Show", article_path(article) %> </td>
-    </tr>
+<%@v1 = 0%>
+<%@v2 = 0%>
+<%@v3 = 0%>
+<%@v4 = 0%>
+<%@v5 = 0%>
+<%@v6 = 0%>
+<%@v7 = 0%>
+  	<% article.comments.each do |comment|%>
+  <%  @v1 += comment.vote_1 %>
+  <%  @v2 += comment.vote_2 %>
+  <%  @v3 += comment.vote_3 %>
+  <%  @v4 += comment.vote_4 %>
+  <%  @v5 += comment.vote_5 %>
+  <%  @v6 += comment.vote_6 %>
+  <%  @v7 += comment.vote_7 %>
+  <%end%>
 
-      <tr>
+  <% @hash = { "Дэйзи" => @v1,"Рокфеллер" => @v2, "Кэмпбелл" => @v3, "Врач"=>@v4, "Ветеран" => @v5, "Проводница"=>@v6, "Актриса"=>@v7 }%>
+  <% @hash.max_by{|k,v| v}%>
+
+
+
+<!--<%= @arr = [@v1,@v2,@v3,@v4]%>
+<%= @arr.max%>-->
+    <tr>
       
       <td><%= article.id %></td>
       <td><%= article.title %></td>
-      <td><a href="/articles/new" class="link-success">Success link</a><hr/> </td>
+      <td><%= link_to "Войти", article_path(article) %> </td>
+      <% if current_user.group == 10 %>
+      <td><%= @hash.max_by{|k,v| v}%></td>
+      <%end%>
     </tr>
+
+
  <% end %>
   </tbody>
 </table>
-<a href="/articles/new" class="link-success">Начать новое голосование</a>
+
+<% if current_user.group == 10 %>
+<a href="/articles/new" class="link-success">Начать новое голосование(следующая ночь)</a>
+<%end%>
 
 
 

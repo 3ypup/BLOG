@@ -11,7 +11,12 @@ class CommentsController < ApplicationController
   
 
   def comment_params
-    params.require(:comment).permit(:author, :body)
+    params.require(:comment).permit(
+    	:author, :body, :vote_1, 
+    	:vote_2, :vote_3, :vote_4, 
+    	:vote_5, :vote_6, :vote_7, 
+    	:vote_8, :vote_9, :vote_10, 
+    	:group)
   end
 
 

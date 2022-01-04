@@ -6,12 +6,79 @@
 
 
 
-<%= link_to "Posts", articles_path %><hr/> 
 
 
 
 
 
+<% if current_user.group == 10 %>
+
+<table class="table">
+  <thead>
+    <tr>
+     <th scope="col">едущий/команда №</th>
+      <th scope="col">Дейзи</th>
+      <th scope="col">Мистер Рокфеллер</th>
+      <th scope="col">Мистер Кэмпбелл</th>
+      <th scope="col">Врач</th>
+      <th scope="col">Ветеран</th>
+      <th scope="col">Проводница</th>
+      <th scope="col">Актриса</th>
+      </tr>
+  </thead>
+  <tbody>
+  	<% @article.comments.each do |comment|%>
+    <tr>
+   
+    <td><%=comment.author%>/<%=comment.group%></td>
+      <td><%=comment.vote_1%></td>
+      <td><%=comment.vote_2%></td>
+      <td><%=comment.vote_3%></td>
+      <td><%=comment.vote_4%></td>
+      <td><%=comment.vote_5%></td>
+      <td><%=comment.vote_6%></td>
+      <td><%=comment.vote_7%></td>
+     
+    </tr>
+
+    <%end%>
+  </tbody>
+</table>
+
+
+<%else%>
+
+<table class="table">
+  <thead>
+    <tr>
+     
+      <th scope="col">Дейзи</th>
+      <th scope="col">Мистер Рокфеллер</th>
+      <th scope="col">Мистер Кэмпбелл</th>
+      <th scope="col">Врач</th>
+      <th scope="col">Ветеран</th>
+      <th scope="col">Проводница</th>
+      <th scope="col">Актриса</th>
+      </tr>
+  </thead>
+  <tbody>
+  	<% @article.comments.each do |comment|%>
+    <tr>
+   
+     <% if comment.group == current_user.group %>
+      <td><%=comment.vote_1%></td>
+      <td><%=comment.vote_2%></td>
+      <td><%=comment.vote_3%></td>
+      <td><%=comment.vote_4%></td>
+      <td><%=comment.vote_5%></td>
+      <td><%=comment.vote_6%></td>
+      <td><%=comment.vote_7%></td>
+      <%end%>
+    </tr>
+
+    <%end%>
+  </tbody>
+</table>
 
 
 
@@ -24,32 +91,102 @@
 
 
 
-<div class = "container">
-	<div class = "row">
-		<div class = "col-sm-4 col-xs-4 col-md-6">
-			<ul> 
-				<li><%= "Ведущий #{comment.author}" %> <br/></li>
-			</ul>
-		</div>
-		<div class = "col-sm-8 col-xs-8 col-md-6">
-			<ul> 
-				<%= "writed: #{comment.body}"%><hr/>
-			</ul>
-		</div>
-		
-	</div>
-</div>
 <%end%>
+
+<%= current_user.username%> 
+<% @q = 0 %>
+<% @article.comments.each do |comment|%>
+
+<% if comment.author == current_user.username %>
+
+<%= @q = 1 %>
+
+<%end%>
+
+<%end%>
+
+
+<% if @q < 1 %>
 
 <%= form_for ([@article, @article.comments.build]) do |f| %> 
 
-	<p> New form! </p>
+	<p>  </p>
 	
 	<h1> <%= f.hidden_field  :author,  value:  current_user.username %> </h1>
 	<h1> <%= f.hidden_field  :group,  value:  current_user.group%> </h1>
 
 	<h3> <%= f.label :Проголосуйте_за_каждого_персонажа%></h3>
-	<h1> <%= f.text_area :body, size: "40x5"  %> </h1>
+
+
+<div class="alert  alert-success" role="alert">
+Дэйзи
+<%= f.select :vote_1, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+
+</div>
+
+<div class="alert  alert-success" role="alert">
+Мистер Рокфеллер
+<%= f.select :vote_2, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+Мистер Кэмпбелл
+<%= f.select :vote_3, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+Врач
+<%= f.select :vote_4, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+Ветеран
+<%= f.select :vote_5, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+Проводница
+<%= f.select :vote_6, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+Актриса
+<%= f.select :vote_7, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+<!--
+<div class="alert  alert-success" role="alert">
+<%= f.select :vote_8, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+<%= f.select :vote_9, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+<div class="alert  alert-success" role="alert">
+<%= f.select :vote_10, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
+</div>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+	<h2> <%= f.label :Примечания%></h2>
+	<p1> <%= f.text_field :body, size: "50x5"  %> </p1>
+	
 	<p3> <%= f.submit 'Post comment'  %></p3>
+
+<%end%>
+
+<%end%>
 
 <%end%>

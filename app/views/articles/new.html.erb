@@ -4,9 +4,10 @@
 <%= form_for :article, url: articles_path do |f| %> 
 
 	<p> New form! </p>
-	<h3> <%= f.label :ночь_номер %></h3>
-	<h1> <%= f.text_field  :title, value: @artnum %> </h1>
-	<h1> <%= f.text_area :text, size: "60x10" %> </h1>
+	<h3> <%= f.label :ночь_номер%>  <%=@artnum%></h3>
+	<h1> <%= f.hidden_field  :title, value: @artnum %> </h1>
+	<h3> <%= f.label :Примечания%> </h3>
+	<h1> <%= f.text_field :text, size: "60x10" %> </h1>
 
 	<p3> <%= f.submit 'Make Article'  %></p3>
 
