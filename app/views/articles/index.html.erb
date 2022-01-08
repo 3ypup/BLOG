@@ -17,7 +17,7 @@
       <th scope="col">Посмотреть</th> 
     <% if current_user.group == 10 %>
 		<th scope="col">Результат</th> 
-		<th scope="col">Комиссары проверяют</th> 
+		<th scope="col">Проверяли мафию</th> 
 	<%end%>
 
 
@@ -58,6 +58,8 @@
 
 
 
+
+
 <!--<%= @arr = [@v1,@v2,@v3,@v4]%>
 <%= @arr.max%>-->
     <tr>
@@ -67,7 +69,7 @@
       <td><%= link_to "Войти", article_path(article) %> </td>
       <% if current_user.group == 10 %>
       <td><%= @hash.max_by{|k,v| v}%><%@hash.values.max%> В процентах:<%=@prc.floor(2) %> %</td>
-
+      
       <%end%>
     </tr>
 
@@ -83,7 +85,28 @@
 
 
 
+<% if current_user.group == 10 %>
 
+	
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ночь №</th>
+      <th scope="col">Ведущий/Группа</th>
+      <th scope="col">За мафию голосовали</th> 
+     </tr>
+ </thead>
+ <% @comments.each do |comment|%>
+ <tbody>
+ <td><%=comment.article_id%></td>
+ <td><%=comment.author%>/<%=comment.group%></td>
+ <td><%= v = comment.vote_4+comment.vote_5+comment.vote_6 %></td>
+ </tbody>
+ <%end%>
+</table>
+
+
+<% end%>
 
 
 

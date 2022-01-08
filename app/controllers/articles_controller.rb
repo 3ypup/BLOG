@@ -22,7 +22,8 @@ end
 
   def index
     @articles = Article.all
-
+    @users = User.all
+    @comments = Comment.all
   end
 
   def show
