@@ -26,7 +26,7 @@
       <th scope="col">Проводница</th>
       <th scope="col">Актриса</th>
       <th scope="col">Журналистка</th>
-      <th scope="col">Комиссары проверяют</th>
+      <!--<th scope="col">Комиссары проверяют</th>-->
 
       </tr>
   </thead>
@@ -43,20 +43,20 @@
       <td><%=comment.vote_6%></td>
       <td><%=comment.vote_7%></td>
       <td><%=comment.vote_8%></td>
-      <td><%=@kom[comment.det-1]%><%comment.det%> <%@kash[@kom[comment.det-1].to_s]+=1%></td>
+      <!--<td><%=@kom[comment.det-1]%><%comment.det%> <%@kash[@kom[comment.det-1].to_s]+=1%></td>
 
-    
+    -->
 
      
     </tr>
 
     <%end%>
 
-     Комиссары проверяют: <%=@kom = @kash.max_by{|k,v| v} %>
+    <!--Комиссары проверяют: <%=@kom = @kash.max_by{|k,v| v} %>
      <% @all = @article.comments.size %>,
      это 
      <% @prc =  @kash.values.max.to_f/ @all.to_f * 100.0   %>
-     <%= @prc.floor(2)%> % всех проголосовавших комиссаров
+     <%= @prc.floor(2)%> % всех проголосовавших комиссаров -->
    
   </tbody>
 </table>
@@ -130,52 +130,52 @@
 
 
 <div class="alert  alert-success" role="alert">
-Дэйзи
+Дэйзи Рокфеллер
 <%= f.select :vote_1, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 
 </div>
 
 <div class="alert  alert-success" role="alert">
-Мистер Рокфеллер
+Мистер Джеймс Рокфеллер
 <%= f.select :vote_2, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 <div class="alert  alert-success" role="alert">
-Мистер Кэмпбелл
+Игрок Арчибальд Кэмпбелл
 <%= f.select :vote_3, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 <div class="alert  alert-success" role="alert">
-Врач
+Врач Лев Вельяминов
 <%= f.select :vote_4, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 <div class="alert  alert-success" role="alert">
-Ветеран
+Ветеран Фредерик Либби
 <%= f.select :vote_5, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 <div class="alert  alert-success" role="alert">
-Проводница
+Проводница Джозефина Берч
 <%= f.select :vote_6, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 <div class="alert  alert-success" role="alert">
-Актриса
+Актриса Хлоя
 <%= f.select :vote_7, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
 
 
 <div class="alert  alert-success" role="alert">
-Журналистка
+Журналистка Миневра
 <%= f.select :vote_8, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
-
+<!--
 <div class="alert  alert-success" role="alert">
 	Комиссар считает, что нужно проверить: 
 <%= f.select :det, [["Дэйзи", 1],["Мистер Рокфеллер",2],["Мистер Кэмпбелл",3],["Врач",4],["Ветеран",5],["Проводница",6],["Актриса",7], ["Журналистка",8]] %>
 </div>
-<!--
+
 <div class="alert  alert-success" role="alert">
 <%= f.select :vote_9, [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9]] %>
 </div>
@@ -201,7 +201,7 @@
 	<h2> <%= f.label :Примечания%></h2>
 	<p1> <%= f.text_field :body, size: "50x5"  %> </p1>
 	
-	<p3> <%= f.submit 'Post comment'  %></p3>
+	<p3> <%= f.submit 'Проголосовать'  %></p3>
 
 <%end%>
 
