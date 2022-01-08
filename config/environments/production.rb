@@ -107,17 +107,17 @@ Rails.application.configure do
 config.action_mailer.raise_delivery_errors = true
 
 config.action_mailer.default_url_options = { :host => 'http://185.188.183.243/' }
-ActionMailer::Base.smtp_settings = {
+#ActionMailer::Base.smtp_settings = {
 
 
-  enable_starttls_auto: true,
-  openssl_verify_mode: 'none',
+ # enable_starttls_auto: true,
+  #openssl_verify_mode: 'none',
   #ssl:             true,
-  domain:         'gmail.com',
-  address:        'smtp.gmail.com', # default: localhost
-  port:           '587',                  # default: 25
-  user_name:      Rails.application.credentials.user_name,
-  password:       Rails.application.credentials.email_pass,
-  authentication: :plain              # :plain, :login or :cram_md5
-}
+  #domain:         'gmail.com',
+  #address:        'smtp.gmail.com', # default: localhost
+  #port:           '587',                  # default: 25
+  #user_name:      Rails.application.credentials.user_name,
+  #password:       Rails.application.credentials.email_pass,
+  #authentication: :plain              # :plain, :login or :cram_md5
+#}
 end
